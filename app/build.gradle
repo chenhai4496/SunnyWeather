@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
     defaultConfig {
         applicationId "com.sunnyweather.android"
         minSdkVersion 21
@@ -15,10 +16,33 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config{
+
+            //在这里写，盘符不用配置，使用单斜杠是Linux系统，使用双斜杠是Windows系统
+            //storeFile file('C:/AndroidKey/chenhai/keystore/chenhai.jks')
+            //storeFile file('C:\\AndroidKey\\chenhai\\keystore\\chenhai.jks')
+
+            //这里写，使用中文路径也是没有问题，
+            //storeFile file('C:\\Users\\精卫填海\\Desktop\\chenhai.jks')
+            //storeFile file('C:/Users/精卫填海/Desktop/chenhai.jks')
+
+            storeFile file(KEY_PATH)
+
+            storePassword KEY_PASS
+            keyAlias = ALIAS_NAME
+            keyPassword ALIAS_PASS
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.config
+
         }
     }
 
