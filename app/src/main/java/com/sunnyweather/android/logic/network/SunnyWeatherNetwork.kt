@@ -17,6 +17,16 @@ object SunnyWeatherNetwork {
 
     suspend fun searchPlaces(query : String) = placeService.searchPlaces(query).await22()
 
+
+    private val weatherService = ServiceCreator.create<WeatherService>()
+
+    suspend fun getRealtimeWeather(lng : String, lat : String)
+            = weatherService.getRealtimeWeather(lng, lat).await22()
+
+    suspend fun getDailyWeather(lng : String, lat : String)
+            = weatherService.getDailyWeather(lng, lat).await22()
+
+
     private suspend fun <T> Call<T>.await22() : T{
 
         return suspendCoroutine { continuation ->

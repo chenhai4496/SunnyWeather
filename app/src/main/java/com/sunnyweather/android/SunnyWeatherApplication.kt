@@ -13,7 +13,7 @@ class SunnyWeatherApplication : Application(){
 
     companion object{
         lateinit var context: Context
-        const val TOKEN = "填入你申请的令牌值1111"
+        const val TOKEN = "gxwbJMHUzeMss0Ww"
 
     }
 
